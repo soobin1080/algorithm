@@ -1,10 +1,13 @@
+package 문자열;
 import java.util.Scanner;
 
 public class bj_10809 {
+	
+	private static Scanner sc;
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		Scanner sc = new Scanner(System.in);
+		sc = new Scanner(System.in);
 
 		String s = sc.next();
 
