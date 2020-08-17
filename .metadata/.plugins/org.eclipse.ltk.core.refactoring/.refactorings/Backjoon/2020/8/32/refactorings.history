@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Move 3 elements to &apos;Backjoon/src/문자열&apos;&#x0D;&#x0A;- Original project: &apos;Backjoon&apos;&#x0D;&#x0A;- Destination element: &apos;Backjoon/src/문자열&apos;&#x0D;&#x0A;- Original elements:&#x0D;&#x0A;     bj_10809.java&#x0D;&#x0A;     bj_11720.java&#x0D;&#x0A;     bj_1152.java&#x0D;&#x0A;- Update references to refactored element" description="Move compilation units" destination="/src&lt;문자열" element1="/src&lt;{bj_10809.java" element2="/src&lt;{bj_11720.java" element3="/src&lt;{bj_1152.java" files="0" flags="589830" folders="0" id="org.eclipse.jdt.ui.move" policy="org.eclipse.jdt.ui.moveResources" qualified="false" references="true" stamp="1596694834496" units="3" version="1.0"/>
+</session>
