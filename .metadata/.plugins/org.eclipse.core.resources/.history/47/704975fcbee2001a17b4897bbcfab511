@@ -1,0 +1,42 @@
+import java.util.ArrayList;
+import java.util.PriorityQueue;
+import java.util.Queue;
+
+public class pg_가장큰수 {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		int[] numbers = { 6, 10, 2 };
+		
+		String answer="";
+
+		Queue<Integer>[] arr = new PriorityQueue[10];
+
+		for (int i = 0; i < numbers.length; i++) {
+			if (numbers[i] >= 1000) {
+				int q = numbers[i] / 1000;
+				arr[q].add(numbers[i]);
+			}
+
+			else if (numbers[i] >= 100) {
+				int q = numbers[i] / 100;
+				arr[q].add(numbers[i]);
+			}
+
+			else if (numbers[i] >= 10) {
+				int q = numbers[i] / 10;
+				arr[q].add(numbers[i]);
+			}
+		}
+
+		for (int i = 0; i < arr.length; i++) {
+			if (arr[i].size() >= 1) {
+				for (int j = arr[i].size() - 1; j == 0; j--) {
+					
+				}
+			}
+		}
+
+	}
+
+}
