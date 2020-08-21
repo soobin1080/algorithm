@@ -58,5 +58,6 @@ public class pg_단어변환 {
         }
         return answer;
     }
+	}
 
 }

@@ -9,7 +9,7 @@ public class pg_단어변환 {
 		String target = "cog";
 		String[] words = { "hot", "dot", "dog", "lot", "log", "cog" };
 
-		int answer = 0;
+int answer = 0;
         
         boolean used[] = new boolean[words.length];
 
@@ -58,5 +58,6 @@ public class pg_단어변환 {
         }
         return answer;
     }
+	}
 
 }
