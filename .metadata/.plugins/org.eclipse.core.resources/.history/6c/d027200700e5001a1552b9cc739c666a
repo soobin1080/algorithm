@@ -1,0 +1,14 @@
+import java.time.LocalTime;
+
+public class pg_1 {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		LocalTime t = LocalTime.parse("12:30");
+
+		LocalTime t1 = LocalTime.parse("13:32");
+
+		System.out.println(t1.minusHours(t.getHour()));
+	}
+
+}
