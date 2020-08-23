@@ -1,6 +1,7 @@
 
 public class pg_2 {
-
+	static boolean flag = false;
+	//socar
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		String[] drum = { "######", ">#*###", "####*#", "#<#>>#", ">#*#*<", "######" };
@@ -15,22 +16,22 @@ public class pg_2 {
 		}
 		int count = 0;
 		for (int i = 0; i < drum.length; i++) {
-			if (start(0, i, arr, 0))
-				System.out.println("이ㅏㄹ너리;넝린ㅇ");
-				count++;
+			start(0, i, arr, 0);
+			if(flag)
+			count++;
 		}
 		System.out.println(count);
 	}
 
-	static boolean start(int y, int x, char[][] arr, int star) {
+	private static void start(int y, int x, char[][] arr, int star) {
 		// TODO Auto-generated method stub
-		System.out.println(y + "," + x);
-		if (y == arr.length) {
-			System.out.println("햐햐햐");
-			return true;
-		}
 		if (star == 2) {
-			return false;
+			flag=false;
+			return;
+		}
+		if (y == arr.length) {
+			flag=true;
+			return;
 		}
 		switch (arr[y][x]) {
 		case '#':
@@ -44,10 +45,8 @@ public class pg_2 {
 			break;
 		case '*':
 			start(y + 1, x, arr, star + 1);
-			// 1이면 stop
 			break;
 		}
-		return false;
 	}
 
 }
