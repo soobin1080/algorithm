@@ -1,0 +1,23 @@
+import java.util.Scanner;
+import java.util.TreeSet;
+
+public class bj_2751 {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Scanner sc = new Scanner(System.in);
+
+		int t = sc.nextInt();
+
+		TreeSet<Integer> tree = new TreeSet<>();
+for (int i = 0; i < t; i++) {
+			tree.add(sc.nextInt());
+	
+}
+
+		for (int i = 0; i < tree.size(); i++) {
+			System.out.println(tree.pollFirst());
+		}
+	}
+
+}
