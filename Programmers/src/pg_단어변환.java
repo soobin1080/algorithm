@@ -27,6 +27,7 @@ public class pg_단어변환 {
 				//begin과 target은 같지 않습니다.
                 
 				if(now.equals(target)) {
+					//exist=true;
 					return answer;
 				}
                 
