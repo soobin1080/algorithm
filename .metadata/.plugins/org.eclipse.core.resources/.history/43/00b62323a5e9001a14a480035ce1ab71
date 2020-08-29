@@ -1,0 +1,55 @@
+package codingtest_0829;
+
+public class solution3 {
+	static int n;
+	static int[][] products={{10,3,2},{15,2,5}};
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		n = 2;
+
+		
+		int stock[]= {10,15};
+		int max = 0;
+		for (int i = 0; i < products.length; i++) {
+			combi(0, i, 0);
+		}
+
+		System.out.println(max);
+
+	}
+
+	private static void combi(int date, int product, int total_price) {
+		if (date == n) {
+			System.out.println(total_price);
+			System.out.println("--------------------");
+			return;
+		}
+
+		for (int i = 0; i < products.length; i++) {
+			
+			int product_price = 0;
+			// 행사상품 아닌거
+			for (int j = 0; j < products.length; j++) {
+				int sell = 0;
+				if (i == j) {
+					if (products[i][2] * 2 > products[i][0]) {
+						sell = products[i][0];
+					} else
+						sell = products[i][2] * 2;
+				} else {
+					if (products[i][2] > products[i][0]) {
+						sell = products[i][0];
+					} else
+						sell = products[i][2];
+				}
+				product_price += (sell * products[i][1]);
+			}
+			System.out.println(date + "번째 날짜에 " +i + "번째를 행사 상품으로 선택 , 전체가격"+ (total_price + product_price));
+			
+			combi(date + 1, i, total_price + product_price);
+		}
+
+	}
+
+}

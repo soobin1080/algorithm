@@ -1,0 +1,30 @@
+package codingtest_0829;
+
+public class solution1 {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		int N = 2;
+		int[][] simulation_data = { { 0, 3 }, { 2, 5 }, { 4, 2 }, { 5, 3 } };
+
+		int answer = 0;
+
+		int time[] = new int[100001];
+
+		for (int i = 0; i < simulation_data.length; i++) {
+			if (time[simulation_data[i][0]] < 2) {
+				for (int j = simulation_data[i][0]; j < simulation_data[i][0] + simulation_data[i][1] - 1; j++) {
+					time[j]++;
+				}
+			}
+
+			else {
+				while (time[simulation_data[i][0]] == 2) {
+					simulation_data[i][0]++;
+					answer++;
+				}
+			}
+		}
+	}
+
+}
