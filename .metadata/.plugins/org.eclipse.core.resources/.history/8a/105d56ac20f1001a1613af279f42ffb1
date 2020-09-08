@@ -27,8 +27,6 @@ public class bj_10819 {
 	private static void search(int[] arr) {
 		// TODO Auto-generated method stub
 		int array[] = new int[arr.length];
-		
-		
 
 	}
 
