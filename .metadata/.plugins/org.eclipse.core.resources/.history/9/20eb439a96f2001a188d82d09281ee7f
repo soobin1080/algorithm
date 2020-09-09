@@ -1,0 +1,12 @@
+import java.util.Scanner;
+
+public class bj_10870 {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Scanner sc=new Scanner(System.in);
+		
+		System.out.println(fibo(sc.nextInt()));
+	}
+
+}
