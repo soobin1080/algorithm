@@ -1,3 +1,4 @@
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Scanner;
@@ -56,9 +57,6 @@ public class sw_7793_오나의여신님 {
 					System.out.println("수연이 위치" + point.y + ", " + point.x);
 					move(point.y, point.x);
 					// 여신 만남
-					if (safe) {
-						break a;
-					}
 				}
 
 				// 악마의 손아귀
@@ -66,11 +64,11 @@ public class sw_7793_오나의여신님 {
 				for (int i = 0; i < size; i++) {
 					Node point = devil.poll();
 					devil(point.y, point.x);
-					// 수연 잡힘..
-					if (!safe) {
-						break a;
-					}
 				}
+
+			}
+			for (int i = 0; i < map.length; i++) {
+				System.out.println(Arrays.toString(map[i]));
 			}
 
 			if (safe)
@@ -86,12 +84,13 @@ public class sw_7793_오나의여신님 {
 			int iy = y + dy[i];
 			int ix = x + dx[i];
 			if (iy >= 0 && iy < N && ix >= 0 && ix < M && (map[iy][ix] == '.' || map[iy][ix] == 'S')) {
-				if (map[iy][ix] != 'S') {
+				if (map[iy][ix] == '.') {
 					map[iy][ix] = '*';
-				} else {
-					safe = false;
-					return;
 				}
+//				if (map[iy][ix] == 'S') {
+//					safe = false;
+//					return;
+//				}
 
 				devil.add(new Node(iy, ix));
 			}
@@ -103,10 +102,11 @@ public class sw_7793_오나의여신님 {
 			int iy = y + dy[i];
 			int ix = x + dx[i];
 			if (iy >= 0 && iy < N && ix >= 0 && ix < M && (map[iy][ix] == '.' || map[iy][ix] == 'D')) {
-				if (map[iy][ix] != 'D') {
+				if (map[iy][ix] == '.') {
 					map[iy][ix] = 'S';
 					map[y][x] = '.';
-				} else {
+				}
+				if (map[iy][ix] == 'D') {
 					safe = true;
 					return;
 				}
