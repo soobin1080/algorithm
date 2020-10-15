@@ -1,24 +1,22 @@
-import java.util.Arrays;
 import java.util.LinkedList;
-import java.util.Queue;
 import java.util.Scanner;
 
 public class sw_7793_오나의여신님 {
+	static char[][] map;
+	static boolean[][] visited;
+	static int N, M;
 
-	static Queue<Node> devil;
-	static Queue<Node> location;
+	static Node D;
+	static LinkedList<Node> devil = null;
+	static LinkedList<Node> suyeon = null;
 
 	static int[] dy = { -1, 1, 0, 0 };
 	static int[] dx = { 0, 0, -1, 1 };
-	static int M;
-	static int N;
-	static char map[][];
-	static boolean safe;
+
+	static boolean finish;
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 		Scanner sc = new Scanner(System.in);
-
 		int TC = sc.nextInt();
 
 		for (int tc = 1; tc <= TC; tc++) {
@@ -27,97 +25,114 @@ public class sw_7793_오나의여신님 {
 			M = sc.nextInt();
 
 			map = new char[N][M];
+			visited = new boolean[N][M];
 
 			devil = new LinkedList<Node>();
-			location = new LinkedList<Node>();
+			suyeon = new LinkedList<Node>();
 
+			// 값 입력받기
 			for (int i = 0; i < N; i++) {
-				String s = sc.next();
+				map[i] = sc.next().toCharArray();
 				for (int j = 0; j < M; j++) {
-					map[i][j] = s.charAt(j);
-					if (map[i][j] == 'S') {
-						location.add(new Node(i, j));
-					}
-					if (map[i][j] == '*') {
+					if (map[i][j] == 'D')
+						D = new Node(i, j);
+					else if (map[i][j] == 'S') {
+						suyeon.add(new Node(i, j));
+						visited[i][j] = true;
+					} else if (map[i][j] == '*') {
 						devil.add(new Node(i, j));
 					}
 				}
 			}
 
+			finish = false;
 			int count = 0;
-
-			safe = false;
-
-			a: while (!devil.isEmpty() && !location.isEmpty()) {
+			while (!finish) {
+				bfs();
 				count++;
-				// 수연 이동
-				int size = location.size();
-				for (int i = 0; i < size; i++) {
-					Node point = location.poll();
-					System.out.println("수연이 위치" + point.y + ", " + point.x);
-					move(point.y, point.x);
-					// 여신 만남
-				}
-
-				// 악마의 손아귀
-				size = devil.size();
-				for (int i = 0; i < size; i++) {
-					Node point = devil.poll();
-					devil(point.y, point.x);
-				}
-
-			}
-			for (int i = 0; i < map.length; i++) {
-				System.out.println(Arrays.toString(map[i]));
 			}
 
-			if (safe)
-				System.out.println("#" + tc + " " + count);
-			else
-				System.out.println("#" + tc + " GAME OVER");
-		}
-	}
-
-	private static void devil(int y, int x) {
-		// TODO Auto-generated method stub
-		for (int i = 0; i < 4; i++) {
-			int iy = y + dy[i];
-			int ix = x + dx[i];
-			if (iy >= 0 && iy < N && ix >= 0 && ix < M && (map[iy][ix] == '.' || map[iy][ix] == 'S')) {
-				if (map[iy][ix] == '.') {
-					map[iy][ix] = '*';
-				}
-//				if (map[iy][ix] == 'S') {
-//					safe = false;
-//					return;
-//				}
-
-				devil.add(new Node(iy, ix));
+			System.out.print("#" + tc + " ");
+			if (suyeon.size() != 0) {
+				System.out.println(count);
+			} else {
+				System.out.println("GAME OVER");
 			}
 		}
 	}
 
-	private static void move(int y, int x) {
-		for (int i = 0; i < 4; i++) {
-			int iy = y + dy[i];
-			int ix = x + dx[i];
-			if (iy >= 0 && iy < N && ix >= 0 && ix < M && (map[iy][ix] == '.' || map[iy][ix] == 'D')) {
-				if (map[iy][ix] == '.') {
-					map[iy][ix] = 'S';
-					map[y][x] = '.';
-				}
-				if (map[iy][ix] == 'D') {
-					safe = true;
-					return;
-				}
-				System.out.println("갈수잇는 위치" + iy + ", " + ix);
+	private static void bfs() {
 
-				location.add(new Node(iy, ix));
+		// 수연이 이동
+		int size = suyeon.size();
+
+		for (int i = 0; i < size; i++) {
+			boolean flag = false;
+			Node now = suyeon.poll();
+			for (int j = 0; j < 4; j++) {
+				int nowy = now.y + dy[j];
+				int nowx = now.x + dx[j];
+
+				if (nowy >= 0 && nowy < N && nowx >= 0 && nowx < M && !visited[nowy][nowx]) {
+					if (map[nowy][nowx] == '.') {
+						map[nowy][nowx] = 'S';
+						suyeon.add(new Node(nowy, nowx));
+						visited[nowy][nowx] = true;
+						flag = true;
+					} else if (map[nowy][nowx] == 'D') {
+						suyeon.add(new Node(nowy, nowx));
+						finish = true;
+						return;
+					}
+				}
+			}
+			if (flag)
+				map[now.y][now.x] = '.';
+		}
+
+		// 악마 이동
+		size = devil.size();
+
+		for (int i = 0; i < size; i++) {
+			Node now = devil.poll();
+			for (int j = 0; j < 4; j++) {
+				int nowy = now.y + dy[j];
+				int nowx = now.x + dx[j];
+				if (nowy >= 0 && nowy < N && nowx >= 0 && nowx < M) {
+					if (map[nowy][nowx] == '.') {
+						map[nowy][nowx] = '*';
+						devil.add(new Node(nowy, nowx));
+					} else if (map[nowy][nowx] == 'S') {
+						// 수연제거
+						for (int k = 0; k < suyeon.size(); k++) {
+							if (suyeon.get(k).y == nowy && suyeon.get(k).x == nowx) {
+								suyeon.remove(k);
+								break;
+							}
+						}
+
+						map[nowy][nowx] = '*';
+						// 수연개수 0이면 게임오버
+						if (suyeon.size() == 0) {
+							finish = true;
+							return;
+						}
+					}
+				}
 			}
 		}
 	}
 
-	private static class Node {
+	private static void print() {
+		for (int i = 0; i < N; i++) {
+			for (int j = 0; j < M; j++) {
+				System.out.print(map[i][j]);
+			}
+			System.out.println();
+		}
+	}
+
+	static class Node {
 		int y;
 		int x;
 
@@ -126,4 +141,5 @@ public class sw_7793_오나의여신님 {
 			this.x = x;
 		}
 	}
+
 }
