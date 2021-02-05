@@ -1,20 +1,20 @@
 package 삼성역량기출;
 
-import java.util.Arrays;
 import java.util.Scanner;
 
 public class bj_19326_청소년상어 {
 
 	static int[] dx = { 0, -1, -1, -1, 0, 1, 1, 1 };
 	static int[] dy = { -1, -1, 0, 1, 1, 1, 0, -1 };
-
-	static int MAX;
+	static Fish[] fish;
+	static int[][] map;
+	static int MAX, A = 0;
 
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 
-		int[][] map = new int[4][4];
-		Fish[] fish = new Fish[17];
+		map = new int[4][4];
+		fish = new Fish[17];
 		MAX = 0;
 
 		for (int i = 0; i < 4; i++) {
@@ -31,18 +31,24 @@ public class bj_19326_청소년상어 {
 		int sum = 0;
 
 		// 상어이동
-		moveShark(shark, map, fish, sum);
+		moveShark(shark, sum);
 
 		System.out.println(MAX);
 	}
 
-	private static void moveShark(Fish shark, int[][] map, Fish[] fish, int sum) {
+	private static void moveShark(Fish shark, int sum) {
 		// 상어가 더 이상 갈 곳 없을 때 return
-
 		MAX = (MAX < sum) ? sum : MAX;
 
+		int[][] copy_map = new int[4][4];
+		Fish[] copy_fish = new Fish[17];
+		for (int i = 1; i < copy_fish.length; i++) {
+			copy_fish[i] = new Fish(0, true, 0, 0);
+		}
+
+		copyState(copy_map, copy_fish);
 		// 물고기 이동
-		moveFish(map, fish);
+		moveFish();
 
 		// 4*4 행렬이라서 i<4
 		for (int i = 1; i < 4; i++) {
@@ -51,9 +57,7 @@ public class bj_19326_청소년상어 {
 
 			// 상어가 갈 수 있는 곳인지 확인
 			if (iy >= 0 && iy < 4 && ix >= 0 && ix < 4 && map[iy][ix] != 0) {
-				int[][] copy_map = copyArray(map);
-				Fish[] copy_fish = fish.clone();
-
+				
 				// 칸에 있는 물고기 먹기
 				int dead_fish = copy_map[iy][ix];
 				copy_fish[dead_fish].alive = false;
@@ -63,11 +67,46 @@ public class bj_19326_청소년상어 {
 				copy_map[iy][ix] = 99;
 
 				Fish new_shark = new Fish(copy_fish[dead_fish].dir, true, iy, ix);
-				moveShark(new_shark, copy_map, copy_fish, sum + dead_fish);
+				moveShark(new_shark, sum + dead_fish);
+
+				copy_fish[dead_fish].alive = true;
+				copy_map[iy][ix] = 0;
+				copy_map[shark.y][shark.x] = 99;
 
 			}
 		}
+		rollback(copy_map, copy_fish);
 
+	}
+
+	private static void rollback(int[][] copy_map, Fish[] copy_fish) {
+		for (int i = 0; i < 4; i++) {
+			for (int j = 0; j < 4; j++) {
+				map[i][j] = copy_map[i][j];
+			}
+		}
+		for (int i = 1; i < 17; i++) {
+			fish[i].dir = copy_fish[i].dir;
+			fish[i].alive = copy_fish[i].alive;
+			fish[i].y = copy_fish[i].y;
+			fish[i].x = copy_fish[i].x;
+
+		}
+	}
+
+	private static void copyState(int[][] copy_map, Fish[] copy_fish) {
+		for (int i = 0; i < 4; i++) {
+			for (int j = 0; j < 4; j++) {
+				copy_map[i][j] = map[i][j];
+			}
+		}
+
+		for (int i = 1; i < 17; i++) {
+			copy_fish[i].dir = fish[i].dir;
+			copy_fish[i].alive = fish[i].alive;
+			copy_fish[i].y = fish[i].y;
+			copy_fish[i].x = fish[i].x;
+		}
 	}
 
 	private static int[][] copyArray(int[][] map) {
@@ -83,7 +122,7 @@ public class bj_19326_청소년상어 {
 		return copy_map;
 	}
 
-	private static void moveFish(int[][] map, Fish[] fish) {
+	private static void moveFish() {
 		for (int i = 1; i < 17; i++) {
 			if (fish[i].alive) {
 				Fish now = fish[i];
@@ -95,23 +134,22 @@ public class bj_19326_청소년상어 {
 
 					if (ix >= 0 && ix < 4 && iy >= 0 && iy < 4 && map[iy][ix] != 99) {
 						fish[i].dir = dir;
+						fish[i].x = ix;
+						fish[i].y = iy;
+
 						if (map[iy][ix] != 0) {
-							//번호 바꾸기
+							// 번호 바꾸기
 							int fish_num = map[iy][ix];
 							map[iy][ix] = map[now.y][now.x];
 							map[now.y][now.x] = fish_num;
-							//위치 재저장
-							fish[fish_num].x = fish[i].x;
-							fish[fish_num].y = fish[i].y;
-							
-							fish[i].x = ix;
-							fish[i].y = iy;
+
+							// 위치 재저장
+							fish[fish_num].x = now.x;
+							fish[fish_num].y = now.y;
 
 						} else {
 							map[iy][ix] = map[now.y][now.x];
 							map[now.y][now.x] = 0;
-							fish[i].x = ix;
-							fish[i].y = iy;
 						}
 						break;
 					}
