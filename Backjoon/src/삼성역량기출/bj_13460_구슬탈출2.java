@@ -13,110 +13,62 @@ public class bj_13460_구슬탈출2 {
 	static int[] dx = { 0, 0, -1, 1 };
 	static char[][] map;
 	static boolean[][] visited;
+	static int hy, hx;
+	static int N, M;
+	static int count = Integer.MAX_VALUE;
 
 	public static void main(String[] args) throws NumberFormatException, IOException {
 
+		// 입력받기
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		StringTokenizer st = new StringTokenizer(br.readLine());
-		int r = Integer.parseInt(st.nextToken());
-		int c = Integer.parseInt(st.nextToken());
-		map = new char[r][c];
-		visited = new boolean[r][c];
-		Ball ball = new Ball(0, 0, 0, 0, 0);
+		N = Integer.parseInt(st.nextToken());
+		M = Integer.parseInt(st.nextToken());
+		map = new char[N][M];
+		visited = new boolean[N][M];
+		Ball start = new Ball(0, 0, 0, 0, 0);
 
-		int hy = 0, hx = 0;
-
-		for (int i = 0; i < r; i++) {
+		for (int i = 0; i < N; i++) {
 			String s = br.readLine();
-			for (int j = 0; j < c; j++) {
+			for (int j = 0; j < M; j++) {
 				map[i][j] = s.charAt(j);
-				System.out.print(map[i][j]);
 				if (map[i][j] == 'R') {
-					ball.ry = i;
-					ball.rx = j;
+					start.ry = i;
+					start.rx = j;
 				} else if (map[i][j] == 'B') {
-					ball.by = i;
-					ball.bx = j;
+					start.by = i;
+					start.bx = j;
 				} else if (map[i][j] == 'O') {
 					hy = i;
 					hx = j;
 				}
 			}
-			System.out.println();
 		}
 
-		Queue<Ball> qu = new LinkedList<Ball>();
+		// 구슬움직이기
+		dfs(start);
 
-		qu.add(ball);
-		int count = 0;
-		boolean flag = false;
-
-		a: while (!qu.isEmpty()) {
-			Ball now = qu.poll();
-
-			count = now.count;
-			if (count > 10) {
-				count = -1;
-				break;
-			}
-			for (int i = 0; i < 4; i++) {
-				Ball newBall = new Ball(0, 0, 0, 0, 0);
-				boolean red = false;
-				boolean blue = false;
-				// 빨간볼 움직이기
-				int iy = now.ry + dy[i];
-				int ix = now.rx + dx[i];
-
-				if (iy >= 0 && iy < r && ix >= 0 && ix < c) {
-					newBall.ry = now.ry;
-					newBall.rx = now.rx;
-					
-					if (map[iy][ix] == '.') {
-						newBall.ry = iy;
-						newBall.rx = ix;
-
-						map[iy][ix] = 'R';
-						map[now.ry][now.rx] = '.';
-						red = true;
-					} else if (map[iy][ix] == 'O') {
-						flag = true;
-					}
-				}
-
-				// 파란볼 움직이기
-				iy = now.by + dy[i];
-				ix = now.bx + dx[i];
-
-				if (iy >= 0 && iy < r && ix >= 0 && ix < c) {
-					newBall.by = now.by;
-					newBall.bx = now.bx;
-
-					if (map[iy][ix] == '.') {
-						newBall.by = iy;
-						newBall.bx = ix;
-
-						map[iy][ix] = 'B';
-						map[now.by][now.bx] = '.';
-						blue = true;
-					} else if (map[iy][ix] == 'O') {
-						flag = false;
-					}
-				}
-
-				if (flag) {
-					count = now.count++;
-					break a;
-				}
-
-				if (red || blue) {
-					newBall.count = now.count++;
-					qu.add(newBall);
-				}
-			}
-
-		}
+		if (count > 10)
+			count = -1;
 		System.out.println(count);
 
+	}
+
+	
+	private static void dfs(Ball start) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	private static void print(char[][] map2) {
+		for (int i = 0; i < N; i++) {
+			for (int j = 0; j < M; j++) {
+				System.out.print(map2[i][j]);
+			}
+			System.out.println();
+		}
+		System.out.println("ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ");
 	}
 
 	static class Ball {
