@@ -2,7 +2,7 @@ package 삼성역량기출;
 
 import java.util.Scanner;
 
-public class bj_19326_청소년상어 {
+public class bj_19326_청소년상어_다시 {
 
 	static int[] dx = { 0, -1, -1, -1, 0, 1, 1, 1 };
 	static int[] dy = { -1, -1, 0, 1, 1, 1, 0, -1 };
