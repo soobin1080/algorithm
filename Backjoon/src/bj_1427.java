@@ -28,7 +28,7 @@ public class bj_1427 {
 			System.out.print(arr[i]);
 		}
 		
-		
+		sc.close();
 	}
 
 }

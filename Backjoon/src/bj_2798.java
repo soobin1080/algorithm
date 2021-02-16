@@ -45,6 +45,7 @@ public class bj_2798 {
 		}
 		
 		System.out.println(sum);
+		sc.close();
 	}
 
 //	private static void combi(int total,int i) {

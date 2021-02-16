@@ -1,4 +1,3 @@
-import java.util.Arrays;
 import java.util.Scanner;
 
 public class sw_6808_규영이와인영이의카드게임 {
@@ -44,6 +43,7 @@ public class sw_6808_규영이와인영이의카드게임 {
 			System.out.println("#" + tc + " " + win + " " + lose);
 
 		}
+		sc.close();
 	}
 
 	private static void perm(int[] card, int idx) {

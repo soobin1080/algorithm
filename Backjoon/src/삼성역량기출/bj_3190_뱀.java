@@ -107,7 +107,7 @@ public class bj_3190_뱀 {
 		}
 
 		System.out.println(total_time+1);
-
+		sc.close();
 	}
 
 	static void print(boolean[][] visited2) {

@@ -35,6 +35,7 @@ public class sw_7699_수지의수지맞은여행 {
 			System.out.println("#" + tc + " " + MAX);
 
 		}
+		sc.close();
 	}
 
 	private static void dfs(int y, int x, int count) {

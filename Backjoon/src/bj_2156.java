@@ -29,6 +29,7 @@ public class bj_2156 {
         }
          
         System.out.println(dp[n]);
+        sc.close();
 	}
 
 }

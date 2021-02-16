@@ -29,7 +29,7 @@ public class sw_2112_보호필름 {
 			System.out.println("#" + tc + " " + MIN);
 
 		}
-
+		sc.close();
 	}
 
 	private static void dfs(int[][] prev, int numOfInjection, int depth) {

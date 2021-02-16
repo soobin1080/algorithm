@@ -26,6 +26,7 @@ public class pg_신규아이디추천 {
 		new_id = function7(new_id);
 
 		System.out.println(new_id);
+		sc.close();
 	}
 
 	private static String function7(String new_id) {

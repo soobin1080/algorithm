@@ -1,5 +1,4 @@
 package codingtest_1024;
-import java.util.Arrays;
 import java.util.Scanner;
 
 public class Solution1 {

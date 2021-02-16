@@ -26,7 +26,7 @@ public class bj_2577 {
 		for (int i = 0; i < number.length; i++) {
 			System.out.println(number[i]);
 		}
-		
+		sc.close();
 	}
 
 }

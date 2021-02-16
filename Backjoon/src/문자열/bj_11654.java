@@ -10,6 +10,7 @@ public class bj_11654 {
 		
 		int answer=sc.next().charAt(0);
 		System.out.println(answer);
+		sc.close();
 	}
 
 }

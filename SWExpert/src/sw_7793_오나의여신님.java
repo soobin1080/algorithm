@@ -59,6 +59,7 @@ public class sw_7793_오나의여신님 {
 				System.out.println("GAME OVER");
 			}
 		}
+		sc.close();
 	}
 
 	private static void bfs() {

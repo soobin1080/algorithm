@@ -58,7 +58,7 @@ public class bj_2468 {
 		}
 
 		System.out.println(answer);
-
+		sc.close();
 	}
 
 	static class Node {

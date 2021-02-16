@@ -60,6 +60,7 @@ public class bj_2941 {
 			}
 		}
 		System.out.println(count);
+		sc.close();
 	}
 
 }

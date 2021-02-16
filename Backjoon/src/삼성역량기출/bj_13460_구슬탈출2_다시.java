@@ -3,8 +3,6 @@ package 삼성역량기출;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.LinkedList;
-import java.util.Queue;
 import java.util.StringTokenizer;
 
 public class bj_13460_구슬탈출2_다시 {

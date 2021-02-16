@@ -29,6 +29,7 @@ public class bj_14502_연구소 {
 
 		wall(0);
 		System.out.println(MAX);
+		sc.close();
 	}
 
 	private static void bfs() {

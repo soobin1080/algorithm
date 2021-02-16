@@ -1,6 +1,5 @@
 package codingtest_0829;
 
-import java.util.Arrays;
 
 public class solution1 {
 

@@ -51,7 +51,7 @@ public class sw_1210 {
 			System.out.println("#" + tc + " " + x);
 
 		}
-
+		sc.close();
 	}
 
 }

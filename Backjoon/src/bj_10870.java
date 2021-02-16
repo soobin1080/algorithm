@@ -7,6 +7,7 @@ public class bj_10870 {
 		Scanner sc=new Scanner(System.in);
 		
 		System.out.println(fibo(sc.nextInt()));
+		sc.close();
 	}
 
 	private static int fibo(int n) {

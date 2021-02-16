@@ -38,6 +38,7 @@ public class level1_solution1 {
 			answer = 1;
 
 		System.out.println(answer);
+		sc.close();
 	}
 
 }

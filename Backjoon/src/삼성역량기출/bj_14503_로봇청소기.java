@@ -78,7 +78,7 @@ public class bj_14503_로봇청소기 {
 		}
 
 		System.out.println(count);
-
+		sc.close();
 	}
 
 

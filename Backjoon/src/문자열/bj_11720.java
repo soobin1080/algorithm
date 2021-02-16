@@ -18,6 +18,7 @@ public class bj_11720 {
 		}
 
 		System.out.println(answer);
+		sc.close();
 	}
 
 }

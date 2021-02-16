@@ -53,6 +53,7 @@ public class bj_5567 {
 			if(turn==2) break;
 		}
 		System.out.println(count);
+		sc.close();
 	}
 
 }

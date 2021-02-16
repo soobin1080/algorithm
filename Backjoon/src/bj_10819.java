@@ -1,4 +1,3 @@
-import java.util.Arrays;
 import java.util.Scanner;
 
 public class bj_10819 {
@@ -21,7 +20,8 @@ public class bj_10819 {
 			sum = Math.abs(arr[i] - arr[i + 1]);
 		}
 
-		System.out.println();
+		System.out.println(sum);
+		sc.close();
 	}
 
 	private static void search(int[] arr) {

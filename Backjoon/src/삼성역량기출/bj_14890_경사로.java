@@ -30,6 +30,7 @@ public class bj_14890_경사로 {
 				pass++;
 		}
 		System.out.println(pass);
+		sc.close();
 	}
 
 	// 행 d=0 / 열 d=1

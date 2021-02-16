@@ -13,6 +13,7 @@ public class bj_16236_아기상어 {
 	static int[] dx = { 0, 0, -1, 1 };
 	static int[] dy = { -1, 1, 0, 0 };
 
+	@SuppressWarnings("unchecked")
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 
@@ -26,7 +27,7 @@ public class bj_16236_아기상어 {
 				if (map[i][j] == 9) {
 					y = i;
 					x = j;
-					map[i][j]=0;
+					map[i][j] = 0;
 				}
 			}
 		}
@@ -34,18 +35,18 @@ public class bj_16236_아기상어 {
 		Queue<Shark> qu = new LinkedList<Shark>();
 		visited = new boolean[N][N];
 		qu.add(new Shark(y, x));
-		visited[y][x]=true;
+		visited[y][x] = true;
 		Queue<Shark> eat = new LinkedList<>();
-		int time = 0,ans=0;
+		int time = 0, ans = 0;
 		int eat_count = 0;
 		int shark_size = 2;
 
 		while (!qu.isEmpty()) {
 			int size = qu.size();
 			time++;
-			
+
 			for (int s = 0; s < size; s++) {
-				
+
 				Shark shark = qu.poll();
 				// 4방향 탐색
 				for (int i = 0; i < 4; i++) {
@@ -63,7 +64,7 @@ public class bj_16236_아기상어 {
 							}
 							visited[sy][sx] = true;
 
-						}else {
+						} else {
 							qu.add(new Shark(sy, sx));
 							visited[sy][sx] = true;
 						}
@@ -84,15 +85,15 @@ public class bj_16236_아기상어 {
 				qu.clear();
 				qu.add(new Shark(shark.y, shark.x));
 				visited = new boolean[N][N];
-				visited[shark.y][shark.x]=true;
+				visited[shark.y][shark.x] = true;
 				eat.clear();
-				ans+=time;
-				time=0;
+				ans += time;
+				time = 0;
 			}
 		}
 
 		System.out.println(ans);
-
+		sc.close();
 	}
 
 	static class Shark implements Comparable<Shark> {
@@ -106,9 +107,9 @@ public class bj_16236_아기상어 {
 
 		@Override
 		public int compareTo(Shark o) {
-			if (this.y==o.y)
-				return this.x-o.x;
-			return this.y-o.y;
+			if (this.y == o.y)
+				return this.x - o.x;
+			return this.y - o.y;
 		}
 
 	}

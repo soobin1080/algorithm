@@ -72,6 +72,6 @@ public class bj_1018 {
 		}
 		
 		System.out.println(min);
+		sc.close();
 	}
-
 }

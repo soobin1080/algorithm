@@ -34,6 +34,7 @@ public class bj_19236_청소년상어_다시 {
 		moveShark(shark, sum);
 
 		System.out.println(MAX);
+		sc.close();
 	}
 
 	private static void moveShark(Fish shark, int sum) {

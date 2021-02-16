@@ -32,6 +32,7 @@ public class sw_10505 {
  
             System.out.println("#" + tc + " " + answer);
         }
+        sc.close();
 	}
 
 }

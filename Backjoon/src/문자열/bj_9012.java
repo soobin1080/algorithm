@@ -35,6 +35,7 @@ public class bj_9012 {
 			else
 				System.out.println("YES");
 		}
+		sc.close();
 	}
 
 }

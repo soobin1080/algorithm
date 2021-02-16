@@ -51,6 +51,7 @@ public class bj_1012 {
 
 			System.out.println(count);
 		}
+		sc.close();
 	}
 
 	private static void bfs(int i, int j) {

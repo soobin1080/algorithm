@@ -25,7 +25,7 @@ public class bj_2231 {
 		if(answer==Integer.MAX_VALUE) answer=0;
 		
 		System.out.println(answer);
-		
+		sc.close();
 	}
 
 }

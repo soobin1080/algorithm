@@ -22,6 +22,7 @@ public class bj_14501_퇴사 {
 
 		profit(arr, 1, 0);
 		System.out.println(MAX);
+		sc.close();
 	}
 
 	static void profit(int[][] arr, int day, int sum) {

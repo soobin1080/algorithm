@@ -41,6 +41,7 @@ public class pg_K번째수 {
             answer[i] = temp[commands[i][2]-1];
         }
         */
+		sc.close();
 	}
 
 }

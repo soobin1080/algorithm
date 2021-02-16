@@ -20,6 +20,7 @@ public class bj_11650 {
 		for (int i = 0; i < list.size(); i++) {
 			System.out.println(list.get(i).x+" "+list.get(i).y);
 		}
+		sc.close();
 	}
 	
 	static class Node implements Comparable<Node>{
