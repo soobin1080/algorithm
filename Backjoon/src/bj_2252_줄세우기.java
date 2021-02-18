@@ -47,5 +47,6 @@ public class bj_2252_줄세우기 {
 				}
 			}
 		}
+		sc.close();
 	}
 }
