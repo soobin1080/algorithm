@@ -1,5 +1,9 @@
 package kakao기출;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Iterator;
+
 public class pg_스킬트리 {
 
 	public static void main(String[] args) {
@@ -36,6 +40,18 @@ public class pg_스킬트리 {
 			}
 		}
 		System.out.println(answer);
+
+		/********
+		 * 다른 사람 풀이 *********
+		 * 
+		 * ArrayList<String> skillTrees = new
+		 * ArrayList<String>(Arrays.asList(skill_trees)); Iterator<String> it =
+		 * skillTrees.iterator();
+		 * 
+		 * while (it.hasNext()) { if (skill.indexOf(it.next().replaceAll("[^" + skill +
+		 * "]", "")) != 0) { it.remove(); } } answer = skillTrees.size();
+		 * 
+		 ****************************/
 
 	}
 
