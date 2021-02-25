@@ -29,24 +29,29 @@ public class pg_추석트래픽 {
 
 		int answer = 0;
 		for (int i = 0; i < lines.length; i++) {
-
+			
+			//초당 최대 처리량을 구하기 위해서 1초범위를 정한다 
 			int start = startTimes[i];
 			int end = startTimes[i] + 1000;
 
 			int s_cnt = 0, e_cnt = 0;
-			int processionTime = endTimes[i] - startTimes[i] + 1;
-			if (processionTime < 1 || processionTime > 3000)
-				break;
+
 			for (int j = 0; j < lines.length; j++) {
-				if ((startTimes[j] >= start && startTimes[j] <= end) || (endTimes[j] >= start && endTimes[j] <= end))
+				
+				//1초 범위안에 처리시작시간이나 처리끝시간이 포함될 경우 +1, 처리시작시간과 처리 끝시간 사이에 1초범위가 포함 될때 +1
+				
+				if ((startTimes[j] >= start && startTimes[j] < end) || (endTimes[j] >= start && endTimes[j] < end)
+						|| (startTimes[j] <= start && endTimes[j] >= end))
 					s_cnt++;
 			}
 
+			//초당 최대 처리량을 구하기 위해서 1초범위를 정한다 
 			start = endTimes[i];
 			end = endTimes[i] + 1000;
 
 			for (int j = 0; j < lines.length; j++) {
-				if ((startTimes[j] >= start && startTimes[j] <= end) || (endTimes[j] >= start && endTimes[j] <= end))
+				if ((startTimes[j] >= start && startTimes[j] < end) || (endTimes[j] >= start && endTimes[j] < end)
+						|| (startTimes[j] <= start && endTimes[j] >= end))
 					e_cnt++;
 			}
 
@@ -57,20 +62,4 @@ public class pg_추석트래픽 {
 		System.out.println(answer);
 
 	}
-
-	static class Time implements Comparable<Time> {
-		int startTime;
-		int endTime;
-
-		Time(int startTime, int endTime) {
-			this.startTime = startTime;
-			this.endTime = endTime;
-		}
-
-		@Override
-		public int compareTo(Time o) {
-			return this.startTime - o.startTime;
-		}
-	}
-
 }
