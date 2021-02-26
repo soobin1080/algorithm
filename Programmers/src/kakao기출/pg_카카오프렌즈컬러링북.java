@@ -42,15 +42,12 @@ public class pg_카카오프렌즈컬러링북 {
 							}
 						}
 					}
-
 					numberOfArea++;
 					maxSizeOfOneArea = (maxSizeOfOneArea < sizeOfOneArea) ? sizeOfOneArea : maxSizeOfOneArea;
 				}
 			}
 		}
-
 		System.out.println(numberOfArea + " " + maxSizeOfOneArea);
-
 	}
 
 	static class Point {
