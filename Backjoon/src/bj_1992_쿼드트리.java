@@ -17,35 +17,33 @@ public class bj_1992_쿼드트리 {
 				map[i][j] = s.charAt(j) - '0';
 			}
 		}
-		Quadtree(0, 0, N, true);
-		System.out.println(sb);
 
+		QuadTree(0, 0, N, true);
+		System.out.println(sb);
 	}
 
-	private static void Quadtree(int y, int x, int n, boolean square) {
+	static void QuadTree(int y, int x, int n, boolean square) {
 
 		int number = map[y][x];
-		for (int i = 0; i < n; i++) {
-			for (int j = 0; j < n; j++) {
-				System.out.print(map[i][j]);
-				if (number != map[i][j])
+		a: for (int i = y; i < y + n; i++) {
+			for (int j = x; j < x + n; j++) {
+				if (number != map[i][j]) {
 					square = false;
+					break a;
+				}
 			}
-			System.out.println();
 		}
 
 		if (square) {
 			sb.append(number);
 			return;
-		} else {
-			int[] pointY = { y, y, y + n / 2, y + n / 2 };
-			int[] pointX = { x, x + n / 2, x, x + n / 2 };
-			for (int i = 0; i < 4; i++) {
-				Quadtree(pointY[i], pointX[i], n / 2, true);
-			}
-			sb.append(")");
 		}
-
+		sb.append("(");
+		QuadTree(y, x, n / 2, true);
+		QuadTree(y, x + n / 2, n / 2, true);
+		QuadTree(y + n / 2, x, n / 2, true);
+		QuadTree(y + n / 2, x + n / 2, n / 2, true);
+		sb.append(")");
 	}
 
 }
