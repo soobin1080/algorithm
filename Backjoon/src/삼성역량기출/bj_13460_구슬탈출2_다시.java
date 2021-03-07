@@ -41,7 +41,7 @@ public class bj_13460_구슬탈출2_다시 {
 					hx = j;
 				}
 			}
-		}
+		} 
 
 		// 구슬움직이기
 		dfs(start);
