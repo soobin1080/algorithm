@@ -1,3 +1,4 @@
+package 투포인트;
 import java.util.Scanner;
 
 public class bj_2003_수들의합2 {
