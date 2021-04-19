@@ -1,7 +1,7 @@
 import java.util.Scanner;
 
 public class sw_2382_미생물격리 {
-	static Cell[][] map;
+	static Cell[][] map; 
 	static int N, M, K;
 	static int[] dy = { 0, -1, 1, 0, 0 };
 	static int[] dx = { 0, 0, 0, -1, 1 };
