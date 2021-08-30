@@ -10,7 +10,6 @@ INDEX VERSION 1.131+C:\Users\sbkim\Desktop\algorithm\.metadata\.plugins\org.ecli
 1340754292.index
 1941512829.index
 1524487255.index
-3066147335.index
 4235509034.index
 2025289538.index
 469372242.index
