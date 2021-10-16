@@ -5,91 +5,90 @@ import java.util.Queue;
 import java.util.Scanner;
 
 public class bj_14502_연구소_RE {
-
+	static int R, C;
 	static int[][] map;
-	static int[] dx = { -1, 1, 0, 0 };
-	static int[] dy = { 0, 0, -1, 1 };
-	static int N, M, MAX = 0;
-	static boolean[][] visited;
+	static int MAX = 0;
+	static int[] dy = { -1, 1, 0, 0 };
+	static int[] dx = { 0, 0, -1, 1 };
 
 	public static void main(String[] args) {
+
+		// 입력받기
 		Scanner sc = new Scanner(System.in);
+		R = sc.nextInt();
+		C = sc.nextInt();
 
-		N = sc.nextInt();
-		M = sc.nextInt();
-
-		map = new int[N][M];
-		visited = new boolean[N][M];
-
-		for (int i = 0; i < N; i++) {
-			for (int j = 0; j < M; j++) {
+		map = new int[R][C];
+		for (int i = 0; i < R; i++) {
+			for (int j = 0; j < C; j++) {
 				map[i][j] = sc.nextInt();
 			}
 		}
 
-		wall(0);
+		// 벽세우기
+		buildWall(0, 0, 0);
+
 		System.out.println(MAX);
-		sc.close();
+
 	}
 
-	private static void bfs() {
-
-		int[][] copy_map = new int[N][M];
-		visited = new boolean[N][M];
-		Queue<Node> qu = new LinkedList<Node>();
-		
-		for (int i = 0; i < N; i++) {
-			for (int j = 0; j < M; j++) {
-				copy_map[i][j] = map[i][j];
-				if (copy_map[i][j] == 2) {
-					qu.add(new Node(i, j));
-				}
-			}
-		}
-
-		while (!qu.isEmpty()) {
-			Node node = qu.poll();
-
-			for (int i = 0; i < 4; i++) {
-				int y = node.y + dy[i];
-				int x = node.x + dx[i];
-
-				if (y >= 0 && y < N && x >= 0 && x < M && !visited[y][x] && copy_map[y][x] == 0) {
-					visited[y][x] = true;
-					copy_map[y][x] = 2;
-					qu.add(new Node(y, x));
-				}
-			}
-		}
-
-		int safe = 0;
-		for (int i = 0; i < N; i++) {
-			for (int j = 0; j < M; j++) {
-				if (copy_map[i][j] == 0) {
-					safe++;
-				}
-			}
-		}
-
-		MAX = (MAX > safe) ? MAX : safe;
-	}
-
-	private static void wall(int count) {
-
-		if (count > 2) {
-			bfs();
+	private static void buildWall(int r, int c, int wallCount) {
+		if (wallCount == 3) {
+			// 바이러스 퍼트리기
+			spreadVirus();
 			return;
 		}
 
-		for (int i = 0; i < N; i++) {
-			for (int j = 0; j < M; j++) {
+		for (int i = r; i < R; i++) {
+			for (int j = c; j < C; j++) {
 				if (map[i][j] == 0) {
 					map[i][j] = 1;
-					wall(count + 1);
+					buildWall(0,0, wallCount + 1);
 					map[i][j] = 0;
 				}
 			}
 		}
+
+	}
+
+	private static void spreadVirus() {
+		int virusMap[][] = new int[R][C];
+		boolean visited[][] = new boolean[R][C];
+		Queue<Node> qu = new LinkedList<>();
+
+		for (int i = 0; i < R; i++) {
+			for (int j = 0; j < C; j++) {
+				virusMap[i][j] = map[i][j];
+				if (virusMap[i][j] == 2) {
+					qu.add(new Node(i, j));
+				}
+			}
+		}
+		
+		while (!qu.isEmpty()) {
+			Node now = qu.poll();
+
+			for (int i = 0; i < 4; i++) {
+				int y = now.y + dy[i];
+				int x = now.x + dx[i];
+				if (y >= 0 && y < R && x >= 0 && x < C && virusMap[y][x] == 0 && !visited[y][x]) {
+					qu.add(new Node(y, x));
+					virusMap[y][x] = 2;
+					visited[y][x] = true;
+				}
+			}
+		}
+		
+		// 안전영역크기 구하기
+		int safeZone = 0;
+		for (int i = 0; i < R; i++) {
+			for (int j = 0; j < C; j++) {
+				if (virusMap[i][j] == 0)
+					safeZone++;
+			}
+		}
+
+		MAX = (MAX < safeZone) ? safeZone : MAX;
 
 	}
 
