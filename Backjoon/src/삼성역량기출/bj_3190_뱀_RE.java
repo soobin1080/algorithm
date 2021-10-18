@@ -44,7 +44,6 @@ public class bj_3190_뱀_RE {
 			totalSecond++;
 
 			Node head = S.getLast();
-			System.out.println(direction);
 			int ny = dy[direction] + head.y;
 			int nx = dx[direction] + head.x;
 			if (ny >= 0 && ny < N && nx >= 0 && nx < N && !snake[ny][nx]) {
