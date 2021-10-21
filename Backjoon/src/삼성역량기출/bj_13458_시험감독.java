@@ -23,7 +23,7 @@ public class bj_13458_시험감독 {
 		for (int i = 0; i < TestSite.length; i++) {
 
 			int candidate = TestSite[i] - studentOfsuperIntendent;
-			double intendent = 1;
+			double intendent = 1; //총감독관은 1명이 끝이니까
 			if (candidate > 0) {
 				intendent += Math.ceil((candidate * 1.0) / studentOfdeputySuperIntendent);
 			}
