@@ -30,7 +30,6 @@
 <fullyQualifiedTypeName name="java.util.Map"/>
 <fullyQualifiedTypeName name="java.util.Map.Entry"/>
 <fullyQualifiedTypeName name="java.lang.StringBuilder"/>
-<fullyQualifiedTypeName name="java.util.PriorityQueue"/>
 <fullyQualifiedTypeName name="java.util.concurrent.SynchronousQueue"/>
 <fullyQualifiedTypeName name="삼성역량기출.bj_16236_아기상어.Shark"/>
 <fullyQualifiedTypeName name="삼성역량기출.bj_17143_낚시왕"/>
@@ -38,8 +37,6 @@
 <fullyQualifiedTypeName name="java.lang.Math"/>
 <fullyQualifiedTypeName name="java.lang.Package"/>
 <fullyQualifiedTypeName name="java.util.Collection"/>
-<fullyQualifiedTypeName name="java.util.Collections"/>
-<fullyQualifiedTypeName name="java.lang.Comparable"/>
 <fullyQualifiedTypeName name="삼성역량기출.bj_19238_스타트택시.Point"/>
 <fullyQualifiedTypeName name="java.lang.Integer"/>
 <fullyQualifiedTypeName name="java.util.Arrays"/>
@@ -55,6 +52,9 @@
 <fullyQualifiedTypeName name="javax.security.sasl.SaslClient"/>
 <fullyQualifiedTypeName name="java.util.Scanner"/>
 <fullyQualifiedTypeName name="java.lang.System"/>
+<fullyQualifiedTypeName name="java.lang.Comparable"/>
 <fullyQualifiedTypeName name="java.util.Queue"/>
 <fullyQualifiedTypeName name="java.util.LinkedList"/>
+<fullyQualifiedTypeName name="java.util.Collections"/>
+<fullyQualifiedTypeName name="java.util.PriorityQueue"/>
 </qualifiedTypeNameHistroy>
