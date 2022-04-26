@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
-public class bj_13460_구슬탈출 {
+public class bj_13460_구슬탈출2 {
 	static int N, M, MIN = Integer.MAX_VALUE;
 	static char[][] map;
 

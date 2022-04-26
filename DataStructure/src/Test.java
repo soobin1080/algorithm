@@ -54,5 +54,8 @@ public class Test {
 		BigInteger lcm=BigInteger.valueOf(11*5).divide(gcd);
 		System.out.println("최소공배수 : "+lcm);
 		
+		char c='5';
+		System.out.println(c-48);
+		
 	}
 }
