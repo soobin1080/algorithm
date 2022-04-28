@@ -5,7 +5,6 @@ INDEX VERSION 1.131+C:\Users\sbkim\Desktop\algorithm\.metadata\.plugins\org.ecli
 3223033147.index
 38675814.index
 2432615257.index
-199999464.index
 3965066115.index
 1340754292.index
 1941512829.index

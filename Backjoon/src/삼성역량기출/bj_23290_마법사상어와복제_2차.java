@@ -60,7 +60,7 @@ public class bj_23290_마법사상어와복제_2차 {
 
 		for (int i = 0; i < 4; i++) {
 			for (int j = 0; j < 4; j++) {
-				map[i][j] = new ArrayList<>();
+				map[i][j] = new ArrayList<Fish>();
 			}
 		}
 
@@ -117,8 +117,6 @@ public class bj_23290_마법사상어와복제_2차 {
 		// 물고기 복제하기
 		for (int i = 0; i < 4; i++) {
 			for (int j = 0; j < 4; j++) {
-				if (map[i][j] == null)
-					map[i][j] = new ArrayList<>();
 				int size = copyMap[i][j].size();
 				for (int k = 0; k < size; k++) {
 					Fish now = copyMap[i][j].get(k);
@@ -126,15 +124,6 @@ public class bj_23290_마법사상어와복제_2차 {
 				}
 			}
 		}
-
-		for (int i = 0; i < 4; i++) {
-			for (int j = 0; j < 4; j++) {
-				System.out.print(map[i][j].size());
-			}
-			System.out.println();
-		}
-		System.out.println();
-
 	}
 
 	private static void removeSmell() {
@@ -147,35 +136,15 @@ public class bj_23290_마법사상어와복제_2차 {
 	}
 
 	private static void sharkMove() {
+		List<Shark> qu = new LinkedList<Shark>();
 		boolean visited[][] = new boolean[4][4];
-		List<Shark> qu = new LinkedList<>();
-		qu.add(new Shark(sharky, sharkx, 0, 0));
-		for (int i = 2; i >= 0; i--) {
-			int size = qu.size();
-			for (int j = 0; j < size; j++) {
-				Shark now = qu.get(0);
-				int y = now.y;
-				int x = now.x;
-				for (int k = 1; k < 5; k++) {
-					int ny = now.y + sy[k];
-					int nx = now.x + sx[k];
-					if (ny >= 0 && ny < 4 && nx >= 0 && nx < 4 && !visited[ny][nx]) {
-						int rt = (int) Math.pow(10, i) * k;
-						qu.add(new Shark(ny, nx, now.route + rt, now.fishCount + map[ny][nx].size()));
-					}
-				}
 
-				visited[y][x] = true;
-				if (i == 2 && y == sharky && x == sharkx)
-					visited[y][x] = false;
-				qu.remove(0);
-			}
-		}
+		// 상어 루트 찾
+		dfs(sharky, sharkx, 0, 3, 0, 0, qu, visited);
 
 		Collections.sort(qu);
-		int finalroute = qu.get(0).route;
 
-		System.out.println(finalroute + ",물고기수:" + qu.get(0).fishCount);
+		int finalroute = qu.get(0).route;
 
 		// 물고기 삭제 후 냄새 남기기
 		for (int i = 1; i <= 3; i++) {
@@ -192,11 +161,47 @@ public class bj_23290_마법사상어와복제_2차 {
 				checkSmell[ny][nx] = 3;
 			}
 			map[ny][nx].clear(); // 배열다시선언해줘야하나?
-			System.out.println(rt + "방향으로:");
 			sharky = ny;
 			sharkx = nx;
-			System.out.println(sharky + "," + sharkx);
 
+		}
+	}
+
+	private static void dfs(int sharky, int sharkx, int r, int n, int route, int fishCount, List<Shark> qu,
+			boolean[][] visited) {
+
+		boolean[][] copyVisited = new boolean[4][4];
+
+		for (int i = 0; i < 4; i++) {
+			for (int j = 0; j < 4; j++) {
+				copyVisited[i][j] = visited[i][j];
+			}
+		}
+
+		if (r == n) {
+			qu.add(new Shark(sharky, sharkx, route, fishCount));
+			return;
+		}
+
+		for (int k = 1; k < 5; k++) {
+			int ny = sharky + sy[k];
+			int nx = sharkx + sx[k];
+			if (ny >= 0 && ny < 4 && nx >= 0 && nx < 4) {
+				int rt = (int) Math.pow(10, n - 1 - r) * k;
+				if (!copyVisited[ny][nx]) {
+					visited[ny][nx] = true;
+					dfs(ny, nx, r + 1, n, route + rt, fishCount + map[ny][nx].size(), qu, visited);
+				} else
+					dfs(ny, nx, r + 1, n, route + rt, fishCount, qu, visited);
+				
+				
+				for (int i = 0; i < 4; i++) {
+					for (int j = 0; j < 4; j++) {
+						visited[i][j] = copyVisited[i][j];
+					}
+				}
+				
+			}
 		}
 	}
 
